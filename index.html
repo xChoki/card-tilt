@@ -30,23 +30,6 @@
             margin-top: 2rem;
         }
 
-        .card {
-            display: block;
-            padding: 20px;
-            min-width: 40rem;
-            min-height: 20rem;
-            background-color: #fff;
-            border-radius: 1rem;
-            box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
-
-            transition: transform .1s ease-out, box-shadow 0.2s ease-out;
-            will-change: transform;
-
-            &:hover {
-                box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.3);
-            }
-        }
-
         .logo {
             display: flex;
             justify-content: center;
@@ -63,6 +46,41 @@
                 color: #afafaf
             }
         }
+
+        /*
+        * Relevant card styles
+        */
+        .card {
+            display: block;
+            padding: 20px;
+            width: 40rem;
+            height: 20rem;
+            background-color: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+
+            transition: transform .1s ease-out, box-shadow 0.2s ease-out;
+            will-change: transform;
+
+            &:hover {
+                box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: 30rem;
+                height: 15rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: 20rem;
+                height: 10rem;
+            }
+        }
+
     </style>
     <script type="module">
         const card = document.querySelector('.card')
