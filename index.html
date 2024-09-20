@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card tilt</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #211d1d;
+        }
+
+        .container {
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            grid-template-rows: auto 1fr;
+            gap: 20px;
+        }
+
+        .title {
+            color: #fff;
+            margin-top: 2rem;
+        }
+
+        .card {
+            display: block;
+            padding: 20px;
+            min-width: 40rem;
+            min-height: 20rem;
+            background-color: #fff;
+            border-radius: 1rem;
+            box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+
+            transition: transform .1s ease-out, box-shadow 0.2s ease-out;
+            will-change: transform;
+
+            &:hover {
+                transform: scale(1.01);
+                box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.3);
+            }
+        }
+    </style>
+    <script type="module">
+        const card = document.querySelector('.card')
+        const tiltIntensity = 100;
+
+        card.addEventListener('mousemove', (e) => {
+            const cardRect = card.getBoundingClientRect()
+            const cardCenterX = cardRect.left + cardRect.width / 2
+            const cardCenterY = cardRect.top + cardRect.height / 2
+
+            const rotateX = (e.clientY - cardCenterY) / tiltIntensity
+            const rotateY = (cardCenterX - e.clientX) / tiltIntensity
+
+            card.style.transform = `perspective(500px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+        })
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(500px) rotateX(0) rotateY(0)'
+        })
+    </script>
+</head>
+
+<body>
+    <main class="container">
+        <h1 class="title">Card tilt</h1>
+        <section class="card">
+            the card content here
+        </section>
+    </main>
+</body>
+
+</html>
